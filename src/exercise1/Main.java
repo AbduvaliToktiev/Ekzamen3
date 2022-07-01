@@ -13,8 +13,8 @@ public class Main {
             mass[i] = count;
             count++;
             }
-            if (count-1 % 3 != 0) {
             Set<Integer> integerSet = Arrays.stream(mass).collect(Collectors.toCollection(HashSet::new));
+        if (count % 2 != 0) {
             System.out.println(integerSet);
         }
     }
