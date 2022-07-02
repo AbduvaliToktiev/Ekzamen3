@@ -1,50 +1,37 @@
-package exercise3;
+package exercise3; // Папка с третим заданием
 
-public class Things {
-    private String flat;
-    private String bottle;
-    private String circle;
+// Публичный класс с названием Things(Предмет)
+public class Things { // Тело класса
+    private String flat;  // свойство класса
+    private String bottle; // свойство класса
+    private String circle; // свойство класса
+    private String circle2; // свойство класса
+    private int count; // свойство класса
+    private int count2; // свойство класса
 
-    public Things() {
+    // Пустой конструктор
+    public Things() { // Тело конструктора
 
-    }
+    } // Закрытие тела конструктора
 
-    public Things(String flat, String bottle, String circle) {
+    // Создание заполненного конструктора со сваойствами
+    public Things(int count, String circle, String flat, String bottle) { // Тело конструктора
+        this.circle = circle;
         this.flat = flat;
         this.bottle = bottle;
-        this.circle = circle;
-    }
+        this.count = count;
+    } // Закрывает тело конструктора
 
-    public String getFlat() {
-        return flat;
-    }
+    // В этом конструкторе мы вызываем конструктор созданный ранние
+    public Things(int count, String circle2, int count2, String circle, String flat, String bottle) { // Тело конструктора
+        this(count, circle, flat, bottle);
+        this.circle2 = circle2;
+        this.count2 = count2;
+    } // Закрывает Тело конструктора
 
-    public void setFlat(String flat) {
-        this.flat = flat;
-    }
-
-    public String getBottle() {
-        return bottle;
-    }
-
-    public void setBottle(String bottle) {
-        this.bottle = bottle;
-    }
-
-    public String getCircle() {
-        return circle;
-    }
-
-    public void setCircle(String circle) {
-        this.circle = circle;
-    }
-
+    // Override для того чтобы вывести информацию когда будем вызывать через sout
     @Override
-    public String toString() {
-        return "Things{" +
-                "flat='" + flat + '\'' +
-                ", bottle='" + bottle + '\'' +
-                ", circle='" + circle + '\'' +
-                '}';
-    }
-}
+    public String toString() { // Тело аннотации
+        return count + " "  + circle + ", " + count2 + " " + circle2 + " " + flat + " и " + bottle;
+    } // Закрытие тела аннотации
+} // Закрытие тела класса

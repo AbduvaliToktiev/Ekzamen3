@@ -1,27 +1,54 @@
-package exercise2;
+package exercise2; // Папка со вторым заданием
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedList; // Благодаря import позволяет работать с LinkedList иине ругается программа
+import java.util.List; //  Благодаря import позволяет работать с List и не ругается программа
 
-public class Main {
-    public static void main(String[] args) throws ExceptionClone {
+// Публичный класс с названием Main
+public class Main { // Тело класса
+    // Публичный Метод main в котором происходит работа программы
+    public static void main(String[] args) { // Тело метода
+        // Создание LinkedList с названием people
         List<Person> people = new LinkedList<>();
-        Person person1 = new Person("Abduvali", "Toktiev", "Azizdzanovich");
-        Person person2 = new Person("Azamat", "Erlanov", "Erlanovich");
-        Person person3 = new Person("Kurban", "Kurbanov", "Ruslanovich");
-        people.add(person1);
-        people.add(person2);
-        people.add(person3);
-        System.out.println("Список людей до добавления! " + people);
-        addPerson(people);
-        System.out.println("Список людей после добавления! " + people);
-    }
+        Person person1 = new Person("Abduvali", "Toktiev", "Azizdzanovich"); // Создание экземпляра класса где в конструкторе мы указываем имя фамилию и отчество
+        Person person2 = new Person("Azamat", "Erlanov", "Erlanovich"); // Создание экземпляра класса где в конструкторе мы указываем имя фамилию и отчество
+        Person person3 = new Person("Kurban", "Kurbanov", "Ruslanovich"); // Создание экземпляра класса где в конструкторе мы указываем имя фамилию и отчество
+        people.add(person1); // Заполняем список объектами(людьми)
+        people.add(person2); // Заполняем список объектами(людьми)
+        people.add(person3); // Заполняем список объектами(людьми)
+        System.out.println("Список людей до добавления: " + "\n" + people); // Выводим список людей в консоль до добавления
+        // try блок нужен для проверки
+        try {  // Тело try блока
+            addPerson(people); // кусок кода который может вывести ошибку
+            // В catch блок зайдёт программа если try отработает и передаст в catch. В скобки catch записали свою ранее созданный Exception(исключение)
+        } catch (ExceptionClone exceptionClone) { // Тело catch блока
+            System.out.println(exceptionClone.getMessage()); // Вывод сообщения если уловие в методе addPerson сработает, но если  убрать дарутим из имени одну букву сообщение не выбросется
+        } // Закрывает тело catch блока
+        System.out.println("Список людей после добавления: " + "\n" + people); // Выводим список людей в консоль после добавления
+    } // Закрывает тело основного метода
 
-    private static void addPerson(List<Person> people) throws ExceptionClone {
-        Person person4 = new Person("Abduvali", "Toktiev", "Azizdzanovich");
-        people.add(person4);
-        if (person4.getName().equals(people) && person4.getSurname().equals(people) && person4.getPatronymic().equals(people)) {
-            throw new ExceptionClone(" {Такой человек уже есть!}");
-        }
-    }
-}
+    // Приватный метод для добавления Person с названием addPerson, в который передали список людей, а также данный метод может содержать Ошибку
+    private static void addPerson(List<Person> people) throws ExceptionClone { // Тело метода
+        Person person4 = new Person("Abduvali", "Toktiev", "Azizdzanovich"); // Создание экземпляра класса где в конструкторе мы указываем имя фамилию и отчество
+        people.add(person4); // Добавляем объект в список
+        // Создаём объект класса Laptop = далее идёт stream - (Этот метод работает с каким либо источником в нашем случае это коллекция),
+        // далее идёт метод filter - (вернет значения, которые подходят под заданное условие).
+        // В filter записывается условие(В нашем случае проверка есть ли в списке people человек с именем Abduvali, сравниваем с getName())
+        // Если этот элемент есть в списке то отработает метод findAny(вернет любой элемент, соответствующий условию), да это так но в нашем случае таково не будет
+        // Если элемента нет то метод orElse(возвращает переданное значение), пробывал писать без null но начинал ругаться и сделал так что если все условия
+        // отработают как надо то выдаст исключение
+        Person personName = people.stream().filter(person1 -> "Abduvali".equals(person1.getName())).findAny().orElse(null);
+        // Сдесь всё выше перечисленное только сравниваем фамилию - (getSurname)
+        Person personSurname = people.stream().filter(person1 -> "Toktiev".equals(person1.getSurname())).findAny().orElse(null);
+        // Сдесь всё выше перечисленное только сравниваем отчество - (getPatronymic)
+        Person personPatronymic = people.stream().filter(person1 -> "Azizdzanovich".equals(person1.getPatronymic())).findAny().orElse(null);
+        // Низнаю почему до этого стояло "==" не выдовало исключения поставил "!=" всё отлично заработло
+        // Как я понял в условие он сравнивает имя фамилию и отчество из списка и если есть полное совпадение выбрасывает иключение
+        // Если нет то не выбрасывает исключение
+        if (personName != person4 && personSurname != person4 && personPatronymic != person4) { // Тело оператора условия
+            throw new ExceptionClone(" {Такой человек уже есть!}"); // Выбрасывает исключение и строку написанную в ""
+        } // Закрывает тело оператора условия
+    } // Закрытие тело метода добавления
+} // Закрытие тело класса
+// Не знаю на сколько моё утверждение правильно, но как я понял исключение они не остонавливают программу, а просто выводят сообщение обычным шрифтом,
+// а ошибки при их выбрасывании выделяются красным цветом. Решил как и в задачи с ноутбуками и компьюторами использовать stream для проверки условия.
+// При проверки уберите букву например в имени и в stream personName, тогда исключени выбрасываться не будет.

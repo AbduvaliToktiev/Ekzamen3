@@ -1,20 +1,24 @@
-package exercise2;
+package exercise2; // Папка со вторым заданием
 
-public class Person {
-    private String name;
-    private String surname;
-    private String patronymic;
+// Создаём публичный класс Person
+public class Person { // Тело класса
+    private String name; // Даём свойство имя
+    private String surname; // Даём свойство фамилия
+    private String patronymic; // Даём свойство отчество
 
-    public Person() {
+    // Создание пустого конструктора
+    public Person() { // Тело конструктора
 
-    }
+    } // закрытие тело конструктора
 
-    public Person(String name, String surname, String patronymic) {
-        this.name = name;
-        this.surname = surname;
-        this.patronymic = patronymic;
-    }
+    // Создание заполненного конструктора с именем, фамилией и отчеством
+    public Person(String name, String surname, String patronymic) { // Тело конструктора
+        this.name = name; // имя
+        this.surname = surname; // фамилие
+        this.patronymic = patronymic; // отчество
+    } // Закрытие тела конструктора
 
+    // Создание геттеров и сеттеров
     public String getName() {
         return name;
     }
@@ -39,10 +43,9 @@ public class Person {
         this.patronymic = patronymic;
     }
 
+    // Override для того чтобы вывести информацию когда будем вызывать через sout
     @Override
-    public String toString() {
+    public String toString() { // Тело аннотации
         return "Имя = " + name + " | Фамилия = " + surname + " | Отчество = " + patronymic + "\n";
-    }
-
-
-}
+    } // Закрытие тела аннотации
+} // Закрытие тела класса

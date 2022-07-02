@@ -1,7 +1,23 @@
-package exercise3;
+package exercise3; // Папка с третьим заданием
 
-public class Main {
-    public static void main(String[] args) {
+import java.util.ArrayList; // Использование библеотеки ArrayList
+import java.util.List; // Использование библеотеки List, который реализует интерфейс List
 
-    }
-}
+// Публичный класс Main
+public class Main { // Тело класса
+    // Публичный метод main в котором происходит работа программы
+    public static void main(String[] args) { // Тело метода
+        List<Things> backpack1 = new ArrayList<>(); // Создаём через List первый рюкзак и делаем его списком
+        List<Things> backpack2 = new ArrayList<>(); // Создаём через List второй рюкзак и делаем его списком
+        List<Things> backpack3 = new ArrayList<>(); // Создаём через List третий рюкзак и делаем его списком
+        Things things1 = new Things(20, "", 1, "Яблок", "Книга", "Кока-Кола"); // Создаём объект который будет добавлен в первый список
+        Things things2 = new Things(50, "", 1, "Теннисных мячей", "Папка", "Бутылка воды"); // Создаём объект который будет добавлен в первый список
+        Things things3 = new Things(10, "Теннисных мяча", 3, "Яблок", "Папка", "Кока-Кола"); // Создаём объект который будет добавлен в первый список
+        backpack1.add(things1); // В первый список добавляем первый объект
+        backpack2.add(things2); // Во второй список добавляем второй объект
+        backpack3.add(things3); // В третий объект добавляем третий объект
+        System.out.println("Первый рюкзак = " + backpack1); // Выводим первый рюкзак в консоль
+        System.out.println("Второй рюкзак = " + backpack2); // Выводим второй рюкзак в консоль
+        System.out.println("Третий рюкзак = " + backpack3); // Выводим третий рюкзак в консоль
+    } // Закрывает тело метода
+} // Закрывает тело класса

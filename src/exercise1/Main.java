@@ -1,21 +1,31 @@
-package exercise1;
+package exercise1; // Папка с первым заданием
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*; // Звездочка (указывающая на все классы внутри этого пакета)
+import java.util.stream.Collectors; // В классе  Collectors предоставлены ряд встроенных функций, определен в пакете java.util.stream
 
-public class Main {
-    public static void main(String[] args) {
-        Integer[] mass = new Integer[100];
-        int count = 1;
-        for (int i = 0; i < mass.length; i++) {
-            mass[i] = count;
-            count++;
-            }
-            Set<Integer> integerSet = Arrays.stream(mass).collect(Collectors.toCollection(HashSet::new));
-        if (count % 2 != 0) {
-            System.out.println(integerSet);
-        }
-    }
-}
+// Публичный класс с названием Main
+public class Main { // Тело класса
+    // Публичный Метод main в котором происходит работа программы
+    public static void main(String[] args) { // Тело метода
+        Integer[] mass = new Integer[101]; // Массив с типом Integer и длиной 101
+        int count = 1; // Переменная count необходимая для временной записи чисел
+        // Цикл for который создаёт объекты(значеня) по длине массива
+        for (int i = 1; i < mass.length; i++) { // Тело цикла
+            // Условие числа делятся на 2 без остатка
+            if (i % 2 == 0) { // Тело оператора условия
+                System.out.println(i); // Если да, то выводятся числа которые делятся на 2 без остатка
+            } // Закрытие тело оператора условия
+            mass[i] = count; // В массив передаём все числа
+            count++; // увеличиваем count на 1 каждый раз
+        } // Закрываем тело цикла
+        // Далее по условию нам необходимо числа делящаяся на 2 из массива в HashSet
+        // В начале пишем интерфейс Set с типом Integer
+        // далее Arrays.stream(mass) Создание стрима из массива
+        // stream - (Этот метод работает с каким либо источником в нашем случае это массив)
+        // Метод collect определён у класса Stream позволяет получить данные в виде обычной коллекции toSet идёт преобразование к типу Set
+        Set<Integer> setMass = Arrays.stream(mass).collect(Collectors.toSet());
+        System.out.println(setMass); // Выводим множество в консоль
+    } // Закрываем тело основного метода
+} // Закрываем тело класса
+// Перепробывал много способов старался использовать Стримы (Stream доступен с 8 версии Java), чтобы код отличался от других, но увы на данный момент
+// так и не смог решить пару вопросов по данной задачи, но обещаю изучить (stream по подробние) и другие способы.
